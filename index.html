@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.5); /* 半透明背景色 */
+      z-index: 1; /* 確保遮罩在其他元素之上 */
+      
+    }
+
+    #parallelogram-container {
+      top: 5%;
+      left: 4%;
+      width: 54%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(-20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.23s linear forwards;
+    }
+
+    #text {
+      font-size: 4.5vw;
+      padding: 10px;
+      background-color: black; /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.23s linear forwards;
+    }
+
+    #image {
+      top: 25%;
+      left: 8%;
+      clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%); /* 定義平行四邊形裁剪區域 */
+      width: 30vw; /* 寬度百分比，讓圖片填滿容器 */
+      height: 30vw; /* 高度百分比 */
+      position: absolute;
+      z-index: 3; /* 確保圖片在遮罩之上 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.49s linear forwards;
+    }
+
+    #m-container {
+      top: 25%;
+      left: 10%;
+      width: 54%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(-20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.23s linear forwards;
+    }
+
+    #text2 {
+      font-size: 4.5vw;
+      padding: 10px;
+      background-color: darkgray; /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.23s linear forwards;
+    }
+
+    #twitch-container {
+      top: 40%;
+      left: 10%;
+      width: 75%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(-20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.3s linear forwards;
+    }
+
+    #text3 {
+      font-size: 3.2vw;
+      padding: 10px;
+      background-color: dimgray; /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 2s; /* 设置延迟时间为2秒 */
+      animation: run3 0.3s linear forwards; /* 對文字應用相同的動畫效果 */
+    }
+
+    #bigo-container {
+      top: 55%;
+      left: 10%;
+      width: 75%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(-20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 2s ease-in-out forwards;
+      animation-delay: 3s; /* 设置延迟时间为2秒 */
+      animation: run3 0.4s linear forwards;
+    }
+
+    #text4 {
+      font-size: 3.2vw;
+      padding: 10px;
+      background-color: dimgray; /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 2s ease-in-out forwards;
+      animation-delay: 3s; /* 设置延迟时间为2秒 */
+      animation: run3 0.4s linear forwards; /* 對文字應用相同的動畫效果 */
+    }
+
+    #yt-container {
+      top: 70%;
+      left: 10%;
+      width: 75%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(-20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 3s ease-in-out forwards;
+      animation-delay: 4s; /* 设置延迟时间为2秒 */
+      animation: run3 0.5s linear forwards;
+    }
+
+    #text5 {
+      font-size: 3.2vw;
+      padding: 10px;
+      background-color: dimgray; /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 3s ease-in-out forwards;
+      animation-delay: 4s; /* 设置延迟时间为2秒 */
+      animation: run3 0.5s linear forwards; /* 對文字應用相同的動畫效果 */
+    }
+
+    #social-media {
+      top: 85%;
+      left: 100%;
+      width: 54%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 4s; /* 设置延迟时间为2秒 */
+      animation: run4 0.51s linear forwards;
+    }
+
+    #text6 {
+      font-size: xx-large;
+      padding: 10px;
+      background-color: rgb(93, 93, 93); /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 4s; /* 设置延迟时间为2秒 */
+      animation: run4 0.51s linear forwards; /* 對文字應用相同的動畫效果 */
+    }
+
+    #twitter {
+    position: absolute;
+    top: 100%; /* 指定顶部位置 */
+    left: 22%; /* 指定左侧位置 */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 0.51s ease-in-out forwards;
+  }
+
+    #facebook {
+    position: absolute;
+    top: 100%; /* 指定顶部位置 */
+    left: 61%; /* 指定左侧位置 */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 0.51s ease-in-out forwards;
+    }
+
+    #twitter-text{
+    position: absolute;
+    color: aliceblue;
+    top: 111%; /* 指定顶部位置 */
+    left: 24%; /* 指定左侧位置 */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 0.51s ease-in-out forwards;
+    font-size: large;
+    }
+
+    #facebook-text{
+    position: absolute;
+    color: aliceblue;
+    top: 111%; /* 指定顶部位置 */
+    left: 60%; /* 指定左侧位置 */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 0.51s ease-in-out forwards;
+    font-size: large;
+    }
+
+    #useful-tools {
+      top: 130%;
+      left: 23%;
+      width: 54%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(0deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    #text7 {
+        font-size: xx-large;
+      padding: 10px;
+      background-color: rgb(93, 93, 93); /* 平行四邊形的背景色 */
+      color: white; /* 文字顏色 */
+      transform: none; /* 對文字進行傾斜以應對容器的傾斜 */
+      transform-origin: top left; /* 使變換基點保持在左上角，以解決文字消失的問題 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 4s; /* 设置延迟时间为2秒 */
+      animation: run4 0.51s linear forwards; /* 對文字應用相同的動畫效果 */
+    }
+
+    #youtube-most {
+    position: absolute;
+    top: 145%; /* 指定顶部位置 */
+    left: 55%; /* 指定左侧位置 */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    #twitter-most {
+    position: absolute;
+    top: 145%; /* 指定顶部位置 */
+    left: 10%; /* 指定左侧位置 */
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  #phone {
+    position: relative;
+    font-size: xx-large;
+    left: 20%;
+    color: white;
+    background-color: black;
+  }
+
+  #id {
+    position: relative;
+    font-size: xx-large;
+    left: 20%;
+    color: white;
+    background-color: black;
+
+  }
+
+  #birth {
+    position: relative;
+    font-size: xx-large;
+    left: 20%;
+    color: white;
+    background-color: black;
+  }
+
+  #name {
+    position: relative;
+    font-size: x-large;
+    left: 20%;
+    color: white;
+    background-color: black;
+  }
+
+  #education-container {
+      top: 111%;
+      left: 0%;
+      width: 54%; /* 寬度百分比 */
+      height: 34%; /* 高度百分比 */
+      position: absolute;
+      z-index: 2; /* 確保內容在遮罩之上 */
+      transform: skew(-20deg); /* 對容器進行傾斜以創建平行四邊形效果 */
+      opacity: 0; /* 初始时隐藏物体 */
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 4s; /* 设置延迟时间为2秒 */
+      animation: run5 0.51s linear forwards;
+    }
+
+    #experience {
+    position: relative;
+    font-size: xx-large;
+    left: 20%;
+    color: white;
+    background-color: black;
+  }
+
+  #education {
+    position: relative;
+    font-size: xx-large;
+    left: 20%;
+    color: white;
+    background-color: black;
+  }
+
+  #very-special {
+    position: absolute;
+    font-size: xx-large;
+    width: 100%;
+    top: 140%;
+    color: white;
+    background-color: dimgray;
+  }
+
+  #Hightlights {
+    position: absolute;
+    font-size: xx-large;
+    width: 100%;
+    top: 140%;
+    color: white;
+    background-color: black;
+  }
+
+  .container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    top: 66%;
+    left: 0%;
+}
+
+.item {
+    position: relative;
+    width: 0;
+    height: 50px;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+
+    top: 50%;
+    left: -40%;
+}
+
+.animate {
+    animation: slide-in 1s ease-in-out forwards;
+}
+
+#reward {
+    position: relative;
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%); /* 定義平行四邊形裁剪區域 */
+      width: 40vw; /* 寬度百分比，讓圖片填滿容器 */
+      height: 40vw; /* 高度百分比 */
+      position: absolute;
+      z-index: 3; /* 確保圖片在遮罩之上 */
+      left: 0%;
+}
+
+#award {
+    position: absolute;
+    font-size: x-large;
+    height: 40vw; 
+    top: 100%;
+    left: 40%;
+    color: white;
+    background-color: black;
+    transform: skew(-20deg);
+}
+
+@keyframes slide-in {
+    to {
+opacity: 1; /* 在动画结束时使物体完全显示 */
+}
+
+100% {
+left: 0%;
+}
+
+0% {
+left: calc(0% - 100%); /* 根據容器寬度調整值 */
+}
+}
+
+
+
+
+
+
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1; /* 在动画结束时使物体完全显示 */
+      }
+    }
+
+
+    @keyframes run {
+      0% {
+        left: 0;
+      }
+
+      100% {
+        left: calc(100% - 80%); /* 根據容器寬度調整值 */
+      }
+    }
+
+    @keyframes run2 {
+      0% {
+        left: 0;
+      }
+
+      100% {
+        left: calc(100% - 80%); /* 根據容器寬度調整值 */
+      }
+    }
+
+    @keyframes run3 {
+
+        to {
+        opacity: 1; /* 在动画结束时使物体完全显示 */
+      }
+
+      0% {
+        left: 0;
+      }
+
+      100% {
+        left: calc(100% - 80%); /* 根據容器寬度調整值 */
+      }
+    }
+
+    @keyframes run4 {
+
+to {
+opacity: 1; /* 在动画结束时使物体完全显示 */
+}
+
+100% {
+left: 10%;
+}
+
+0% {
+left: calc(100% - 0%); /* 根據容器寬度調整值 */
+}
+}
+
+@keyframes run5 {
+    to {
+opacity: 1; /* 在动画结束时使物体完全显示 */
+}
+
+100% {
+left: 30%;
+}
+
+0% {
+left: calc(0% - 100%); /* 根據容器寬度調整值 */
+}
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div id="parallelogram-container">
+    <div id="text">我的簡歷 Resume</div>
+  </div>
+    
+  <img id="image" src="m.jpg">
+
+  <div id="m-container">
+    <div id="text2">&emsp;&emsp;&emsp;&emsp;&emsp;  姓名 Name</div>
+    <div id="name">&emsp;&emsp;&emsp;&emsp;&emsp;大聰明</div>
+  </div>
+  
+
+  <div id="twitch-container">
+    <div id="text3">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 我的電話 My Phone Number</div>
+    <div id="phone">0912345678</div>
+</div>
+
+  
+
+  <div id="bigo-container">
+    <div id="text4">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 我的身分/居留證號 My ID</div>
+    <div id="id">F123456789</div>
+</div>
+
+
+  
+
+  <div id="yt-container">
+    <div id="text5">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 我的生日 Birthday</div>
+    <div id="birth">1970.1.1</div>  
+</div>
+
+
+<div id="social-media">
+    <div id="text6">經歷 job experience</div>
+    <div id="experience">特斯拉執行長</div>
+</div>
+
+<div id="education-container">
+    <div id="text7">學歷 Education</div>
+    <div id="education">哈佛大學</div>
+</div>
+
+<div id="very-special">&emsp;特殊經歷 Hightlights
+    <div id="Hightlights">&emsp;&emsp;獲得諾貝爾獎</div>
+</div>
+
+        <div class="container" id="animated-item">
+            <div class="item">
+                <img id="reward" src="reward.jpg"></img></div>
+                <div id="award">&emsp;&emsp;人類貢獻獎&emsp;</div>
+        </div><script>
+
+// 获取要添加动画的元素
+// 获取要添加动画的元素
+const animatedItem = document.getElementById("animated-item");
+
+// 监听滚动事件
+window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+    const itemPosition = animatedItem.getBoundingClientRect().top;
+
+    // 如果元素滚动到可视范围内，添加CSS类来触发动画
+    if (itemPosition <= window.innerHeight - 50) {
+        animatedItem.classList.add("animate");
+    }
+    else {
+        animatedItem.classList.remove("animate"); // 修复：当元素不在可视范围内时移除动画类
+    }
+});
+
+        </script>
+
+
+</body>
+
+</html>
